@@ -26,18 +26,19 @@ void err(istream_iterator<string> it, T a, Args... args) {
 #define error(args...)
 #endif
 int phi(int n) {
-    int result = n;
+    int ans = n;
     for (int i = 2; i * i <= n; i++) {
-        if (n % i == 0) {
-            while (n % i == 0){
-                n /= i;
-              }
-            result -= result / i;
+        if (n % i == 0){
+            while (n % i == 0) n/=i;
+            ans/=i;
+            ans*=(i-1);
         }
     }
-    if (n > 1)
-        result -= result / n;
-    return result;
+    if (n > 1){
+       ans/=n;
+       ans*=(n-1);
+    }    
+    return ans;
 }
 int main() {
     int test = 1, fac = 1, n;
@@ -49,4 +50,3 @@ int main() {
     }
     return 0;
 }
-
